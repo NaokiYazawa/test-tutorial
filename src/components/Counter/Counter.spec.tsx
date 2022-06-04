@@ -1,8 +1,21 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Counter } from "./Counter";
-// import user from "@testing-library/user-event";
 
 describe("Counter", () => {
+  describe('initialized with defaultCount=10 and description="WWW"', () => {
+    beforeEach(() => {
+      render(<Counter defaultCount={10} description="WWW" />);
+    });
+
+    it('renders "Current Count: 10"', () => {
+      expect(screen.getByText("Current Count: 10")).toBeInTheDocument();
+    });
+
+    it('renders title as "WWW"', () => {
+      expect(screen.getByText(/WWW/)).toBeInTheDocument();
+    });
+  });
+
   describe('initialized with defaultCount=0 and description="My Counter"', () => {
     beforeEach(() => {
       render(<Counter defaultCount={0} description="My Counter" />);
@@ -18,9 +31,7 @@ describe("Counter", () => {
 
     describe("when + is clicked", () => {
       beforeEach(() => {
-        fireEvent.click(
-          screen.getByRole("button", { name: "Add from Counter" })
-        );
+        fireEvent.click(screen.getByRole("button", { name: "Add to Counter" }));
       });
 
       it('renders "Current Count: 1"', () => {
