@@ -22,5 +22,6 @@ module.exports = {
   rules: {
     "@typescript-eslint/unbound-method": "off",
     "jest/valid-expect": "off",
+    "testing-library/no-render-in-setup": "off",
   },
 };
